@@ -186,10 +186,6 @@ Run `analyze` again with an empty output directory, `--nninteractive-model`, and
 
 For an application that keeps a session in memory, [`examples/interactive_session.py`](examples/interactive_session.py) demonstrates diagnosis, review, user selection, preview, explicit confirmation, and export. A committed mask invalidates previous evidence; fresh diagnosis is required before further guidance.
 
-## 🔬 Error-diagnosis learning components
-
-The release includes the four-channel input builder, residual 3D U-Net, error/polarity/foreground targets, training losses, checkpoint contract, and calibrated inference.
-
 ## License
 
 No license has been specified for the original MISeg-Agent code in this release. Third-party software and model weights retain their own licenses; links to them do not grant additional rights.
