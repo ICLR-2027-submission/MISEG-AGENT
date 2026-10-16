@@ -22,7 +22,7 @@ An initial segmentation is treated as a starting point. The current CT and mask 
 
 ![MISeg-Agent framework: model selection and initialization, error diagnosis and executable prompt review, and user-guided iterative refinement.](assets/pipeline.png)
 
-**Figure 1. Overview of MISeg-Agent.** Model routing provides an initial mask; error diagnosis, point proposal, and executable review guide user inspection; nnInteractive refines the mask using user-approved points. Ground truth is shown for evaluation only.
+**Figure 1. Overview of MISeg-Agent.** Model routing provides an initial mask; error diagnosis, point proposal, and executable review guide user inspection; nnInteractive refines the mask using user-approved points.
 
 ### Core components
 
