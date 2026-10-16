@@ -182,34 +182,13 @@ Create a JSON list of the points you selected after inspecting the CT and eviden
 
 Coordinates are **zero-based `[x, y, z]` indices in the workspace**, not native-image indices. `1` adds foreground; `0` removes foreground. The values above illustrate the format and must be replaced with case-specific points.
 
-Run `analyze` again with an empty output directory, `--nninteractive-model`, and `--points path/to/selected_points.json`. It re-probes the selected coordinates and writes `preview_workspace.nii.gz` and `preview_native.nii.gz`. **A preview is never committed automatically.** Inspect it in your image viewer before accepting it.
+Run `analyze` again with an empty output directory, `--nninteractive-model`, and `--points path/to/selected_points.json`. It re-probes the selected coordinates and writes `preview_workspace.nii.gz` and `preview_native.nii.gz`. 
 
 For an application that keeps a session in memory, [`examples/interactive_session.py`](examples/interactive_session.py) demonstrates diagnosis, review, user selection, preview, explicit confirmation, and export. A committed mask invalidates previous evidence; fresh diagnosis is required before further guidance.
 
 ## 🔬 Error-diagnosis learning components
 
-The release includes the four-channel input builder, residual 3D U-Net, error/polarity/foreground targets, training losses, checkpoint contract, and calibrated inference. It excludes dataset-specific training jobs and experiment orchestration.
-
-The four channels are soft-tissue CT, wide-window CT, the current binary mask, and its clipped signed-distance field. The predicted scores are:
-
-$$
-e=\sigma(z_e/T_e),\qquad b=\sigma(z_b/T_b),\qquad
-(p_{\mathrm{correct}},p_{\mathrm{FN}},p_{\mathrm{FP}})=(1-e,eb,e(1-b)).
-$$
-
-These are model estimates. Proposal and review reuse them; a passing review is not an independent guarantee of anatomical correctness. Implementation defaults use CT windows of `[-200, 300]` and `[-1000, 1000]` HU, a distance clip of 20 mm, 24 base channels, four levels, and dropout 0.1. Checkpoint metadata determines the actual inference configuration; these defaults have not been independently verified as the settings used for the reported experiments.
-
-The checkpoint loader requires `format=miseg_agent_error_diagnosis`, `model_version=2`, `architecture=factorized_resunet3d`, and `input_contract=ct_and_rough_mask_only`, together with model/preprocessing configuration, calibration values, deployment thresholds, and training metadata. A compatible trained checkpoint is not currently included or publicly linked.
-
-## 📚 Paper
-
-**MISeg-Agent: A Human-in-the-Loop Agentic Framework for Error Diagnosis and Executable Prompt Review in 3D Medical Image Segmentation**
-
-The repository uses the title of the accompanying manuscript. Publication metadata and a verified public paper link are not included in this release.
-
-## 🙏 Acknowledgements
-
-This implementation uses [PyTorch](https://pytorch.org/), [NumPy](https://numpy.org/), [SciPy](https://scipy.org/), and [SimpleITK](https://simpleitk.org/). Executable review uses [nnInteractive](https://github.com/MIC-DKFZ/nnInteractive). Initial-mask routing references the upstream models listed above. Please acknowledge and follow the terms of each upstream project you use.
+The release includes the four-channel input builder, residual 3D U-Net, error/polarity/foreground targets, training losses, checkpoint contract, and calibrated inference.
 
 ## License
 
