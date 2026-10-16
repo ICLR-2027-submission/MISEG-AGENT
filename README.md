@@ -136,8 +136,6 @@ python -m miseg_agent route --target liver --case-id case001 --available totalse
 
 The command returns a selected tool and its reasoning; it does **not** execute that model. `--objective` accepts `accuracy`, `balanced`, `latency`, `gpu_memory`, `unrestricted_latency`, or `unrestricted_gpu_memory`. Use `--model` for an explicit compatible choice and `--dataset` for a dataset-specific evidence lookup.
 
-The bundled routing evidence is an explicitly labeled **historical 90-case snapshot**, not the manuscript's final 120-case benchmark. Replace it with validated deployment evidence when needed; do not interpret its resource numbers as measurements on your hardware.
-
 ### 2. Prepare a CT and an initial binary mask
 
 ```text
@@ -158,8 +156,6 @@ checkpoints/
 These folders are local inputs and are excluded by `.gitignore`. The CT should contain unnormalized HU values. Use a single binary target mask or specify `--mask-label` for a multiclass mask. MISeg-Agent resamples CT and mask onto one physical workspace, `256 × 256 × 256` by default, with linear and nearest-neighbor interpolation respectively.
 
 ### 3. Diagnose and propose points
-
-After obtaining a compatible **factorized ED V2** checkpoint:
 
 ```bash
 python -m miseg_agent analyze --image data/case001/image.nii.gz --mask data/case001/rough_mask.nii.gz --checkpoint checkpoints/error_diagnosis_v2.pt --config configs/core.yaml --output outputs/case001
