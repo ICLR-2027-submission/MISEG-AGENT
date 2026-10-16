@@ -106,7 +106,7 @@ python -m miseg_agent --help
 | NV-Segment-CTMR | Automatic initial mask | [nvidia/NV-Segment-CTMR](https://huggingface.co/nvidia/NV-Segment-CTMR) |
 | SAT-Nano | Text-conditioned initial mask | [zzh99/SAT](https://huggingface.co/zzh99/SAT) — segmentation and text-encoder checkpoints |
 | SegVol | Text-conditioned initial mask | [BAAI/SegVol](https://huggingface.co/BAAI/SegVol) |
-| MISeg-Agent error diagnosis | FN/FP diagnosis | No verified public checkpoint URL is currently available |
+| MISeg-Agent error diagnosis | FN/FP diagnosis |  |
 
 The five automatic segmentation systems are routing targets, with upstream installation and inference kept separate. Supply their binary output to MISeg-Agent. Preserve each publisher's model configuration and label mappings alongside the weights. SAT-Nano requires both the Nano segmentation model and its paired text encoder; SegVol requires its tokenizer/configuration files. TotalSegmentator automatically downloads its weights on first use, or through `totalseg_download_weights -t total`.
 
