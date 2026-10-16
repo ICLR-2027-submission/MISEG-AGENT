@@ -1,0 +1,248 @@
+schema_version: 1
+benchmark_id: miseg-agent-foundation-baselines-20260830
+scope:
+  modality: CT/CTA
+  dimensions: 3
+  task: whole-organ semantic segmentation
+  cases: 90
+  model_case_runs: 450
+  datasets: 7
+  validation: 450 predictions structurally validated; one empty SegVol KiTS19 prediction
+    retained as Dice 0
+quality_grades:
+  source_metric: mean Dice
+  reliability_source_metric: 10th-percentile Dice
+  exact_values_exposed_to_agent: false
+  thresholds:
+    excellent: '>= 0.95'
+    strong: '>= 0.90 and < 0.95'
+    good: '>= 0.85 and < 0.90'
+    fair: '>= 0.75 and < 0.85'
+    weak: < 0.75
+  rank:
+    excellent: 5
+    strong: 4
+    good: 3
+    fair: 2
+    weak: 1
+routing_policy:
+  minimum_dataset_cases: 5
+  default_accuracy_order:
+  - quality_grade
+  - reliability_grade
+  - stable_case_key
+  balanced_pareto_dimensions:
+  - reliability_grade
+  - mean_cold_start_wall_time_sec
+  - peak_gpu_memory_delta_mb
+  resource_objectives_require_top_quality_grade: true
+  unrestricted_resource_objectives:
+  - unrestricted_latency
+  - unrestricted_gpu_memory
+  note: Models in the same quality and reliability grades are not ordered by exact
+    Dice or resources in accuracy mode.
+model_resources:
+  nv_segment_ct:
+    display_name: NV-Segment-CT / VISTA3D
+    mean_cold_start_wall_time_sec: 26.3780640578
+    peak_gpu_memory_delta_mb: 15341.0
+  nv_segment_ctmr:
+    display_name: NV-Segment-CTMR
+    mean_cold_start_wall_time_sec: 16.3342321256
+    peak_gpu_memory_delta_mb: 15269.0
+  sat:
+    display_name: SAT-Nano
+    mean_cold_start_wall_time_sec: 22.3289021444
+    peak_gpu_memory_delta_mb: 11389.0
+  segvol:
+    display_name: SegVol
+    mean_cold_start_wall_time_sec: 14.4406527
+    peak_gpu_memory_delta_mb: 2831.0
+  totalsegmentator:
+    display_name: TotalSegmentator v2
+    benchmark_model_key: totalsegmentator_v2
+    mean_cold_start_wall_time_sec: 39.9228214022
+    peak_gpu_memory_delta_mb: 4965.0
+target_aliases:
+  kidney: bilateral kidney
+  kidneys: bilateral kidney
+  bilateral kidneys: bilateral kidney
+targets:
+  liver:
+    cases: 16
+    quality_grade:
+      nv_segment_ct: excellent
+      nv_segment_ctmr: excellent
+      sat: excellent
+      segvol: excellent
+      totalsegmentator: excellent
+    reliability_grade:
+      nv_segment_ct: excellent
+      nv_segment_ctmr: excellent
+      sat: excellent
+      segvol: strong
+      totalsegmentator: excellent
+  pancreas:
+    cases: 38
+    quality_grade:
+      nv_segment_ct: good
+      nv_segment_ctmr: strong
+      sat: good
+      segvol: fair
+      totalsegmentator: weak
+    reliability_grade:
+      nv_segment_ct: fair
+      nv_segment_ctmr: good
+      sat: fair
+      segvol: weak
+      totalsegmentator: weak
+  spleen:
+    cases: 5
+    quality_grade:
+      nv_segment_ct: excellent
+      nv_segment_ctmr: excellent
+      sat: excellent
+      segvol: excellent
+      totalsegmentator: strong
+    reliability_grade:
+      nv_segment_ct: excellent
+      nv_segment_ctmr: excellent
+      sat: strong
+      segvol: strong
+      totalsegmentator: strong
+  bilateral kidney:
+    cases: 21
+    quality_grade:
+      nv_segment_ct: good
+      nv_segment_ctmr: strong
+      sat: excellent
+      segvol: weak
+      totalsegmentator: good
+    reliability_grade:
+      nv_segment_ct: fair
+      nv_segment_ctmr: strong
+      sat: strong
+      segvol: weak
+      totalsegmentator: fair
+  aorta:
+    cases: 10
+    quality_grade:
+      nv_segment_ct: good
+      nv_segment_ctmr: fair
+      sat: fair
+      segvol: fair
+      totalsegmentator: good
+    reliability_grade:
+      nv_segment_ct: fair
+      nv_segment_ctmr: weak
+      sat: fair
+      segvol: fair
+      totalsegmentator: fair
+datasets:
+  MSD Task03 Liver:
+    target: liver
+    cases: 14
+    quality_grade:
+      nv_segment_ct: excellent
+      nv_segment_ctmr: excellent
+      sat: excellent
+      segvol: excellent
+      totalsegmentator: excellent
+    reliability_grade:
+      nv_segment_ct: excellent
+      nv_segment_ctmr: excellent
+      sat: excellent
+      segvol: strong
+      totalsegmentator: excellent
+  SLIVER07:
+    target: liver
+    cases: 2
+    quality_grade:
+      nv_segment_ct: excellent
+      nv_segment_ctmr: excellent
+      sat: excellent
+      segvol: excellent
+      totalsegmentator: excellent
+    reliability_grade:
+      nv_segment_ct: excellent
+      nv_segment_ctmr: excellent
+      sat: excellent
+      segvol: excellent
+      totalsegmentator: excellent
+  MSD Task07 Pancreas:
+    target: pancreas
+    cases: 29
+    quality_grade:
+      nv_segment_ct: good
+      nv_segment_ctmr: strong
+      sat: good
+      segvol: fair
+      totalsegmentator: weak
+    reliability_grade:
+      nv_segment_ct: fair
+      nv_segment_ctmr: good
+      sat: fair
+      segvol: weak
+      totalsegmentator: weak
+  Pancreas-CT:
+    target: pancreas
+    cases: 9
+    quality_grade:
+      nv_segment_ct: good
+      nv_segment_ctmr: good
+      sat: fair
+      segvol: fair
+      totalsegmentator: fair
+    reliability_grade:
+      nv_segment_ct: fair
+      nv_segment_ctmr: good
+      sat: fair
+      segvol: fair
+      totalsegmentator: weak
+  MSD Task09 Spleen:
+    target: spleen
+    cases: 5
+    quality_grade:
+      nv_segment_ct: excellent
+      nv_segment_ctmr: excellent
+      sat: excellent
+      segvol: excellent
+      totalsegmentator: strong
+    reliability_grade:
+      nv_segment_ct: excellent
+      nv_segment_ctmr: excellent
+      sat: strong
+      segvol: strong
+      totalsegmentator: strong
+  KiTS19:
+    target: bilateral kidney
+    cases: 21
+    quality_grade:
+      nv_segment_ct: good
+      nv_segment_ctmr: strong
+      sat: excellent
+      segvol: weak
+      totalsegmentator: good
+    reliability_grade:
+      nv_segment_ct: fair
+      nv_segment_ctmr: strong
+      sat: strong
+      segvol: weak
+      totalsegmentator: fair
+  AortaSeg24:
+    target: aorta
+    cases: 10
+    quality_grade:
+      nv_segment_ct: good
+      nv_segment_ctmr: fair
+      sat: fair
+      segvol: fair
+      totalsegmentator: good
+    reliability_grade:
+      nv_segment_ct: fair
+      nv_segment_ctmr: weak
+      sat: fair
+      segvol: fair
+      totalsegmentator: fair
+release_note: Historical 90-case runtime routing table; not the final 120-case manuscript
+  benchmark.

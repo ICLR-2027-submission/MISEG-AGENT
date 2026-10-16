@@ -1,0 +1,35 @@
+# Core runtime defaults retained from the source implementation.
+# These are not a verified manifest of the manuscript's training experiments.
+prompt_policy:
+  probability_threshold: 0.50
+  candidate_dominance_margin: 0.05
+  candidate_connectivity: 2  # 18-connected 3D components
+  min_component_voxels: 4
+  min_prompt_distance_mm: 12.0
+
+expert_prompt_review:
+  automatic_negative_prompts_enabled: true
+  prompt_only_response_radius_px: 5
+  prompt_only_ed_support_threshold: 0.50
+  prompt_only_correct_threshold: 0.50
+  metric_min_local_response_fraction: 0.55
+  metric_min_directional_change_px: 1
+  metric_min_dice: 0.35
+  metric_min_rough_overlap: 0.30
+  metric_min_area_ratio: 0.35
+  metric_max_area_ratio: 2.50
+  metric_max_change_ratio_vs_rough: 1.50
+  metric_max_component_count_increase: 3
+  metric_remote_positive_distance_mm: 20.0
+  metric_max_incremental_correct_loss: 0.005
+  metric_min_positive_ed_probability_at_point: 0.85
+  metric_min_positive_directional_support_fraction: 0.90
+  metric_min_negative_ed_probability_at_point: 0.95
+  metric_min_negative_directional_support_fraction: 0.98
+  metric_min_negative_local_response_fraction: 0.80
+  metric_min_negative_correct_foreground_retention: 0.995
+  metric_max_negative_removed_fraction: 0.10
+  metric_max_negative_change_ratio_vs_rough: 0.15
+  manual_review_min_component_voxels: 64
+  manual_review_min_error_mass: 48.0
+  manual_review_error_mass_multiplier: 2.0

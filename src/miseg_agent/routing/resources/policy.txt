@@ -1,0 +1,7 @@
+Select only available, target-compatible 3D models requiring no spatial prompt.
+Honor an explicit compatible choice. Otherwise use quality and reliability grades.
+Accuracy ties use a stable case identifier, never model rotation or resource cost.
+Latency and memory objectives stay within the top quality grade unless explicitly unrestricted.
+Balanced selection uses the reliability/latency/memory Pareto frontier in that grade.
+The bundled measurements are a historical 90-case snapshot, not the final manuscript cohort.
+Return no benchmark recommendation when the target or modality has no evidence.

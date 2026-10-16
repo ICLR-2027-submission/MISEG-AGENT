@@ -1,0 +1,155 @@
+catalog_version: 2
+verified_against:
+  totalsegmentator_package: 2.15.0
+  foundation_benchmark: miseg-agent-foundation-baselines-20260830
+  verified_at: 2026-08-30
+models:
+  nninteractive:
+    official_name: nnInteractive
+    official_source: https://github.com/MIC-DKFZ/nnInteractive
+    official_description: Native 3D interactive segmentation with initial-mask, point,
+      scribble, and box input.
+    modalities:
+    - medical
+    dimensions:
+    - 3
+    prompt_mode: initial_mask_or_spatial
+    initial_rough_eligible: false
+    local_priority: 100
+  totalsegmentator:
+    official_name: TotalSegmentator
+    official_source: https://github.com/wasserth/TotalSegmentator
+    official_description: Automatic CT/MR segmentation of anatomical structures.
+    modalities:
+    - CT
+    - MR
+    dimensions:
+    - 3
+    prompt_mode: automatic
+    initial_rough_eligible: true
+    local_priority: 10
+    target_rois:
+      aorta:
+      - aorta
+      liver:
+      - liver
+      pancreas:
+      - pancreas
+      spleen:
+      - spleen
+      kidney:
+      - kidney_left
+      - kidney_right
+      left kidney:
+      - kidney_left
+      right kidney:
+      - kidney_right
+      lung:
+      - lung_upper_lobe_left
+      - lung_lower_lobe_left
+      - lung_upper_lobe_right
+      - lung_middle_lobe_right
+      - lung_lower_lobe_right
+      left lung:
+      - lung_upper_lobe_left
+      - lung_lower_lobe_left
+      right lung:
+      - lung_upper_lobe_right
+      - lung_middle_lobe_right
+      - lung_lower_lobe_right
+      portal vein:
+      - portal_vein_and_splenic_vein
+  nv_segment_ct:
+    official_name: NV-Segment-CT
+    official_source: https://huggingface.co/nvidia/NV-Segment-CT
+    official_description: Class-prompted 3D CT segmentation model based on VISTA3D.
+    modalities:
+    - CT
+    dimensions:
+    - 3
+    prompt_mode: class_prompt
+    initial_rough_eligible: true
+    local_priority: 20
+    supported_targets:
+    - aorta
+    - liver
+    - pancreas
+    - spleen
+    - kidney
+    - bilateral kidney
+    - left kidney
+    - right kidney
+  nv_segment_ctmr:
+    official_name: NV-Segment-CTMR
+    official_source: https://github.com/NVIDIA-Medtech/NV-Segment-CTMR
+    official_description: Class-prompted volumetric CT/MR segmentation model.
+    modalities:
+    - CT
+    - MR
+    dimensions:
+    - 3
+    prompt_mode: class_prompt
+    initial_rough_eligible: true
+    local_priority: 15
+    supported_targets:
+    - aorta
+    - liver
+    - pancreas
+    - spleen
+    - kidney
+    - bilateral kidney
+    - left kidney
+    - right kidney
+  sat:
+    official_name: SAT-Nano
+    official_source: https://github.com/zhaoziheng/SAT
+    official_description: Text-prompted 3D medical semantic segmentation model.
+    modalities:
+    - CT
+    dimensions:
+    - 3
+    prompt_mode: text
+    initial_rough_eligible: true
+    local_priority: 25
+    supported_targets:
+    - aorta
+    - liver
+    - pancreas
+    - spleen
+    - kidney
+    - bilateral kidney
+    - left kidney
+    - right kidney
+  segvol:
+    official_name: SegVol
+    official_source: https://github.com/BAAI-DCAI/SegVol
+    official_description: Volumetric CT segmentation using text, box, or point prompts
+      across more than 200 anatomical categories.
+    modalities:
+    - CT
+    dimensions:
+    - 3
+    prompt_mode: text
+    initial_rough_eligible: true
+    local_priority: 30
+    supported_targets:
+    - aorta
+    - liver
+    - liver tumor
+    - liver cyst
+    - pancreas
+    - pancreatic tumor
+    - spleen
+    - kidney
+    - kidney tumor
+    - left kidney
+    - right kidney
+    - lung
+    - left lung
+    - right lung
+    - abdominal lymph node
+    - artery
+    - bone
+    - portal vein
+    - venous system
+    - skin
