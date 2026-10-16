@@ -18,8 +18,6 @@
 
 An initial segmentation is treated as a starting point. The current CT and mask are used to identify likely **false negatives** (missing foreground) and **false positives** (excess foreground). Proposed corrections are tested with nnInteractive before the user selects points, inspects their joint effect, and commits a new mask.
 
-> **Release scope.** This is a core-method code release. Experiment runners, ablations, tests, participant-study infrastructure, the original web application, datasets, generated results, and all model weights are excluded. A compatible trained diagnosis checkpoint is required for image-to-diagnosis inference; no public download URL for that checkpoint is currently supplied. This release does not claim that its default settings reproduce the paper's reported results.
-
 ## 🧠 Framework
 
 ![MISeg-Agent framework: model selection and initialization, error diagnosis and executable prompt review, and user-guided iterative refinement.](assets/pipeline.png)
